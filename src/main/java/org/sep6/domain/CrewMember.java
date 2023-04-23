@@ -1,7 +1,6 @@
 package org.sep6.domain;
 
 import java.io.Serializable;
-
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
@@ -29,11 +28,20 @@ public class CrewMember {
 	@MapsId("movieId")
 	private Movie movie;
 
-	@ManyToOne
-	@MapsId("role")
-	private MemberRole role;
+
 
 	@ManyToOne
+
+	@MapsId("role")
+
+	private MemberRole role;
+
+
+
+	@ManyToOne
+
 	@MapsId("personId")
+
 	private Profile person;
+
 }
