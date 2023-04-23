@@ -12,19 +12,19 @@ import java.util.List;
 @NoArgsConstructor
 public class Movie {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    private String title;
+	private String title;
 
-    private Year year;
+	private Year year;
 
-    @OneToMany(mappedBy = "movie")
-    private List<CrewMember> crew;
+	@OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
+	private List<CrewMember> crew;
 
-    public Movie(String title, Year year) {
-        this.title = title;
-        this.year = year;
-    }
+	public Movie(String title, Year year) {
+		this.title = title;
+		this.year = year;
+	}
 }

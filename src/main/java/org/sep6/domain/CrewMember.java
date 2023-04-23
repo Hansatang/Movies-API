@@ -1,34 +1,39 @@
 package org.sep6.domain;
 
+import java.io.Serializable;
+
+import jakarta.persistence.Embeddable;
+import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.MapsId;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.io.Serializable;
 
 @Entity
 public class CrewMember {
 
-    @Data
-    @NoArgsConstructor
-    static class CrewMemberId implements Serializable {
-        private Long movieId;
-        private String role;
-        private Long personId;
-    }
+	@Embeddable
+	@Data
+	@NoArgsConstructor
+	static class CrewMemberId implements Serializable {
+		private Long movieId;
+		private String role;
+		private Long personId;
+	}
 
-    @Id
-    private CrewMemberId id;
+	@EmbeddedId
+	private CrewMemberId id;
 
-    @ManyToOne
-    private Movie movie;
+	@ManyToOne
+	@MapsId("movieId")
+	private Movie movie;
 
-    @ManyToOne
-    private MemberRole role;
+	@ManyToOne
+	@MapsId("role")
+	private MemberRole role;
 
-    @ManyToOne
-    private Profile person;
+	@ManyToOne
+	@MapsId("personId")
+	private Profile person;
 }

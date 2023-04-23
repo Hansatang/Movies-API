@@ -15,26 +15,26 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MovieController {
 
-    private final MovieService movieService;
+	private final MovieService movieService;
 
-//    @PostMapping
-//    public ResponseEntity<MovieDto> createMovieButWorse(CreateMovieDto dto) {
-//        return ResponseEntity.status(HttpStatus.CREATED).body(movieService.createMovie(dto));
-//    }
+// 	@PostMapping
+// 	public ResponseEntity<MovieDto> createMovieButWorse(CreateMovieDto dto) {
+// 		return ResponseEntity.status(HttpStatus.CREATED).body(movieService.createMovie(dto));
+// 	}
 
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public MovieDto createMovie(@RequestBody CreateMovieDto dto) {
-        return movieService.createMovie(dto);
-    }
+	@PostMapping
+	@ResponseStatus(HttpStatus.CREATED)
+	public MovieDto createMovie(@RequestBody CreateMovieDto dto) {
+		return movieService.createMovie(dto);
+	}
 
-    @GetMapping
-    public List<MovieDto> getMovies() {
-        return movieService.getMovies();
-    }
+	@GetMapping
+	public List<MovieDto> getMovies() {
+		return movieService.getMovies();
+	}
 
-    @PatchMapping("/{id}")
-    public ResponseEntity<MovieDto> patchMovie(@PathVariable Long id, @RequestBody MovieDto dto) {
-        return ResponseEntity.of(movieService.patchMovie(id, dto));
-    }
+	@PatchMapping("/{id}")
+	public ResponseEntity<MovieDto> patchMovie(@PathVariable Long id, @RequestBody MovieDto dto) {
+		return ResponseEntity.of(movieService.patchMovie(id, dto));
+	}
 }

@@ -15,22 +15,22 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProfileController {
 
-    private final ProfileService profileService;
-    
+	private final ProfileService profileService;
 
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public ProfileDto createProfile(@RequestBody CreateProfileDto dto) {
-        return profileService.createProfile(dto);
-    }
 
-    @GetMapping
-    public List<ProfileDto> getProfiles() {
-        return profileService.getProfiles();
-    }
+	@PostMapping
+	@ResponseStatus(HttpStatus.CREATED)
+	public ProfileDto createProfile(@RequestBody CreateProfileDto dto) {
+		return profileService.createProfile(dto);
+	}
 
-    @PatchMapping("/{id}")
-    public ResponseEntity<ProfileDto> patchMovie(@PathVariable Long id, @RequestBody ProfileDto dto) {
-        return ResponseEntity.of(profileService.patchProfile(id, dto));
-    }
+	@GetMapping
+	public List<ProfileDto> getProfiles() {
+		return profileService.getProfiles();
+	}
+
+	@PatchMapping("/{id}")
+	public ResponseEntity<ProfileDto> patchMovie(@PathVariable Long id, @RequestBody ProfileDto dto) {
+		return ResponseEntity.of(profileService.patchProfile(id, dto));
+	}
 }

@@ -15,33 +15,33 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class ProfileService {
 
-    private final ProfileRepository ProfileRepo;
+	private final ProfileRepository ProfileRepo;
 
-    public ProfileDto createProfile(CreateProfileDto dto) {
-        return toDto(ProfileRepo.save(new Profile(dto.name())));
-    }
+	public ProfileDto createProfile(CreateProfileDto dto) {
+		return toDto(ProfileRepo.save(new Profile(dto.name())));
+	}
 
-    public List<ProfileDto> getProfiles() {
-        return ProfileRepo.findAll()
-                .stream()
-                .map(this::toDto)
-                .toList();
-    }
+	public List<ProfileDto> getProfiles() {
+		return ProfileRepo.findAll()
+			.stream()
+			.map(this::toDto)
+			.toList();
+	}
 
-    @Transactional
-    public Optional<ProfileDto> patchProfile(Long id, ProfileDto dto) {
-        return ProfileRepo.findById(id)
-                .map(m -> patchProfile(m, dto))
-                .map(this::toDto);
-    }
+	@Transactional
+	public Optional<ProfileDto> patchProfile(Long id, ProfileDto dto) {
+		return ProfileRepo.findById(id)
+			.map(m -> patchProfile(m, dto))
+			.map(this::toDto);
+	}
 
-    private ProfileDto toDto(Profile ent) {
-        return new ProfileDto(ent.getId(), ent.getName());
-    }
+	private ProfileDto toDto(Profile ent) {
+		return new ProfileDto(ent.getId(), ent.getName());
+	}
 
-    private Profile patchProfile(Profile Profile, ProfileDto dto) {
-        if (dto.name() != null) Profile.setName(dto.name());
+	private Profile patchProfile(Profile Profile, ProfileDto dto) {
+		if(dto.name() != null) Profile.setName(dto.name());
 
-        return Profile;
-    }
+		return Profile;
+	}
 }
